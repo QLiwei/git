@@ -58,7 +58,7 @@ git tag -a v1.2 9fceb02
 git push origin v1.x
 git push origin --tags
 查看标签信息
-git show tag v1.x
+git show v1.x
 删除标签
 git tag -d v1.x
 git push <remote> :refs/tags/<tagname>
@@ -82,7 +82,7 @@ git branch -d <分支名>
 合并分支
 git merge <分支名>
 解决冲突
-git status 
+git status
 修改文件冲突
 git add <file>
 git commit
@@ -109,7 +109,7 @@ git branch -D <分支名>
 
 ```
 长期分支
-master 
+master
 develop
 next 的平行分支
 proposed（建议） 或 pu: proposed updates（建议更新）分支
