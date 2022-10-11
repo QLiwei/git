@@ -77,6 +77,13 @@ git branch <分支名>
 git checkout <分支名>
 创建并切换到分支
 git branch -a <分支名>
+删除分支
+git branch -d <分支名>
 合并分支
 git merge <分支名>
+解决冲突
+git status 
+修改文件冲突
+git add <file>
+git commit
 ```
