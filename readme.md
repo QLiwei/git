@@ -33,4 +33,32 @@ git diff filename
 git diff --staged
 ```
 
+### 1.3撤销操作
+
+```
+
+```
+
+### 1.4标签
+
+```
+查看标签
+git tag
+打标签 
+附注标签
+git tag -a v1.x -m ""
+轻量标签
+git tag v1.x-lw
+后期打标签
+git log --pretty=oneline
+git tag -a v1.2 9fceb02
+共享标签
+git push origin v1.x
+git push origin --tags
+查看标签信息
+git show tag v1.x
+删除标签
+git tag -d v1.x
+git push <remote> :refs/tags/<tagname> 
+```
 
