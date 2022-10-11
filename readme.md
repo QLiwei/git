@@ -1,12 +1,13 @@
 ## 1.git 基础学习
 
 ### 1.1获取git仓库
+
 ```
 git init
 
 git add filename
 git commit -m "commit info"
-git commit -m 
+git commit -m
 git commit --amend
 
 克隆仓库
@@ -14,6 +15,7 @@ git clone <url>
 ```
 
 ### 1.2文件状态
+
 ------------- 未追踪
 untracked:未追踪状态
 ------------- 已追踪
@@ -44,7 +46,7 @@ git diff --staged
 ```
 查看标签
 git tag
-打标签 
+打标签
 附注标签
 git tag -a v1.x -m ""
 轻量标签
@@ -59,6 +61,22 @@ git push origin --tags
 git show tag v1.x
 删除标签
 git tag -d v1.x
-git push <remote> :refs/tags/<tagname> 
+git push <remote> :refs/tags/<tagname>
+```
+
+## 2.分支
+
+HEAD 分支 指向当前分支
+
+```
+查看分支
+git branch
+创建分支
+git branch <分支名>
+切换分支
+git checkout <分支名>
+创建并切换到分支
+git branch -a <分支名>
+
 ```
 
