@@ -87,3 +87,21 @@ git status
 git add <file>
 git commit
 ```
+
+### 2.1分支管理
+
+```
+查看分支
+git branch
+查看每一个分支的最后一次提交
+git branch -v
+查看哪些分支已经合并到当前分支
+git branch --merged
+查看哪些分支没有合并到当前分支
+git branch --no-merged
+删除分支
+git branch -d <分支名>
+存在未合并的工作 可以使用 -D 选项强制删除它
+git branch -D <分支名>
+```
+
