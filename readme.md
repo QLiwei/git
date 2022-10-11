@@ -173,3 +173,44 @@ git push origin --delete serverfix
 如果不想在每一次推送时都输入用户名与密码，你可以设置一个 “credential cache”。 最简单的方式就是将其保存在内存中几分钟，可以简单地运行 `git config --global credential.helper cache` 来设置它。
 
 ### 2.4变基
+
+**变基使得提交历史更加整洁**
+
+ 你在查看一个经过变基的分支的历史记录时会发现，尽管实际的开发工作是并行的， 但它们看上去就像是串行的一样，提交历史是一条直线没有分叉。
+
+在 Git 中整合来自不同分支的修改主要有两种方法：`merge` 以及 `rebase`
+
+你可以提取在 `C4` 中引入的补丁和修改，然后在 `C3` 的基础上应用一次。 在 Git 中，这种操作就叫做 **变基（rebase）**。
+
+```
+git checkout experiment
+git rebase master
+git checkout master
+git merge experiment
+```
+
+```
+git rebase --onto master server client
+取出 client 分支，找出它从 server 分支分歧之后的补丁， 然后把这些补丁在 master 分支上重放一遍，让 client 看起来像直接基于 master 修改一样”。
+
+git checkout master
+git merge client
+
+将主题分支变基到目标分支
+git rebase <basebranch> <topicbranch>
+
+
+git pull --rebase
+git fetch
+git rebase teamone/master
+```
+
+**变基的风险**
+
+呃，奇妙的变基也并非完美无缺，要用它得遵守一条准则：
+
+**如果提交存在于你的仓库之外，而别人可能基于这些提交进行开发，那么不要执行变基。**
+
+如果你遵循这条金科玉律，就不会出差错。 否则，人民群众会仇恨你，你的朋友和家人也会嘲笑你，唾弃你。
+
+变基操作的实质是丢弃一些现有的提交，然后相应地新建一些内容一样但实际上不同的提交。 如果你已经将提交推送至某个仓库，而其他人也已经从该仓库拉取提交并进行了后续工作，此时，如果你用 `git rebase` 命令重新整理了提交并再次推送，你的同伴因此将不得不再次将他们手头的工作与你的提交进行整合，如果接下来你还要拉取并整合他们修改过的提交，事情就会变得一团糟。
