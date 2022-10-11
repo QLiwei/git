@@ -117,4 +117,59 @@ proposed（建议） 或 pu: proposed updates（建议更新）分支
 主题分支是一种短期分支，它被用来实现单一特性或其相关工作
 ```
 
-2.3
+### 2.3远程分支
+
+Git 的 `clone` 命令会为你自动将其命名为 `origin`，拉取它的所有数据， 创建一个指向它的 `master` 分支的指针，并且在本地将其命名为 `origin/master`。 Git 也会给你一个与 origin 的 `master` 分支在指向同一个地方的本地 `master` 分支，这样你就有工作的基础。
+
+```
+显式地获得远程引用的完整列表
+git ls-remote <remote>
+获得远程分支的更多信息
+git remote show <remote>
+远程仓库中的位置以 <remote>/<branch> 的形式命名
+
+远程仓库同步数据
+git fetch <remote> 
+添加远程分支
+git remote add <remote> url
+
+推送
+git push <remote> <branch>
+
+git push origin serverfix
+git push origin serverfix:serverfix
+serverfix 分支名字展开为 refs/heads/serverfix:refs/heads/serverfix
+origin serverfix:awesomebranch 来将本地的 serverfix 分支推送到远程仓库上的 awesomebranch 分支
+
+git fetch origin 
+将这些工作合并到当前所在的分支
+git merge origin/serverfix
+创建用于工作的本地分支，并且起点位于 origin/serverfix
+git checkout -b serverfix origin/serverfix
+
+跟踪分支
+
+自动地识别去哪个服务器上抓取、合并到哪个分支
+git pull
+当克隆一个仓库时，它通常会自动地创建一个跟踪 origin/master 的 master 分支
+git checkout -b <branch> <remote>/<branch>
+git checkout --track origin/serverfix
+
+拉取
+git pull 的魔法经常令人困惑所以通常单独显式地使用 fetch 与 merge 命令会更好一些。
+
+删除远程分支
+git push origin --delete serverfix
+```
+
+**“origin” 并无特殊含义**
+
+远程仓库名字 “origin” 与分支名字 “master” 一样，在 Git 中并没有任何特别的含义一样。 同时 “master” 是当你运行 `git init` 时默认的起始分支名字，原因仅仅是它的广泛使用， “origin” 是当你运行 `git clone` 时默认的远程仓库名字。 如果你运行 `git clone -o booyah`，那么你默认的远程分支名字将会是 `booyah/master`。
+
+**如何避免每次输入密码**
+
+如果你正在使用 HTTPS URL 来推送，Git 服务器会询问用户名与密码。 默认情况下它会在终端中提示服务器是否允许你进行推送。
+
+如果不想在每一次推送时都输入用户名与密码，你可以设置一个 “credential cache”。 最简单的方式就是将其保存在内存中几分钟，可以简单地运行 `git config --global credential.helper cache` 来设置它。
+
+### 2.4变基
