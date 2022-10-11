@@ -105,3 +105,16 @@ git branch -d <分支名>
 git branch -D <分支名>
 ```
 
+### 2.2分支开发工作流
+
+```
+长期分支
+master 
+develop
+next 的平行分支
+proposed（建议） 或 pu: proposed updates（建议更新）分支
+主题分支
+主题分支是一种短期分支，它被用来实现单一特性或其相关工作
+```
+
+2.3
